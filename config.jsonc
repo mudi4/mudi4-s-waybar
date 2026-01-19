@@ -1,0 +1,75 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 5,
+
+    "modules-left": [ "custom/arch-menu", "hyprland/workspaces", "memory"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["wireplumber", "hyprland/language", "tray", "clock"],
+
+    "hyprland/workspaces": {
+        "format": "<span size='larger'>{icon}</span>",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "\uf444",
+            "default": "\uf4c3"
+        },
+        "icon-size": 10,
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": []
+        }
+    },
+
+    "custom/active-window": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/active-window.sh",
+        "exec-interval": 1,
+        "return-type": "json"
+    },
+
+    "clock": {
+        "format": "{:%d.%m.%Y | %H:%M}"
+    },
+
+    "wireplumber": {
+        "format": "\udb81\udd7e  {volume}%",
+        "format-muted": "\udb81\udd74  {volume}%",
+        "on-click": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "max-volume": 100,
+        "scroll-step": 5
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "\uf4bc  {used:0.1f}G"
+    },
+
+    "network": {
+        "format": "",
+        "format-ethernet": "\udb83\udc9d",
+        "format-wifi": "{icon}",
+        "format-disconnected": "\udb83\udc9c",
+        "format-icons": ["\udb82\udd2f", "\udb82\udd1f", "\udb82\udd22", "\udb82\udd25", "\udb82\udd28"],
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+
+    "hyprland/language": {
+    "format": "{short}",
+    "on-click": "hyprctl switchxkblayout $(hyprctl devices | grep -A 10 'keyboard' | grep 'name' | head -1 | cut -d':' -f2 | xargs) next"
+    },
+
+    "custom/arch-menu": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "bash ~/.config/waybar/scripts/powermenu.sh",
+        "on-click-right": "rofi -show drun"
+    }
+}

@@ -1,0 +1,132 @@
+@define-color foreground #eeeeee;
+@define-color foreground-inactive #aaaaaa;
+@define-color background #000000;
+@define-color arch-blue #1793d1;
+@define-color arch-blue-light #4cb0e6;
+@define-color red #ff5555;
+@define-color green #50fa7b;
+@define-color yellow #f1fa8c;
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    color: @foreground;
+    background-color: @background;
+    border-bottom: 1px solid #333333;
+}
+
+/* Workspaces */
+#workspaces button {
+    color: @foreground-inactive;
+    padding: 0 8px;
+    background-color: transparent;
+    border: none;
+}
+
+#workspaces button.active {
+    color: @foreground;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: @red;
+    animation: blink 2s infinite;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Иконка активного окна */
+#custom-window-icon {
+    font-size: 16px;
+    padding: 0 12px;
+    color: @foreground;
+}
+
+/* Кнопка Arch Linux */
+#custom-arch-menu {
+    color: @foreground;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 12px;
+    margin: 0 5px;
+    background-color: transparent;
+}
+
+#custom-arch-menu:hover {
+    color: @foreground;
+    background-color: rgba(23, 147, 209, 0.1);
+}
+
+/* Общие модули */
+#clock,
+#wireplumber,
+#battery,
+#network,
+#tray {
+    padding: 0 12px;
+}
+
+/* Батарея */
+#battery {
+    color: @green;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    to {
+        background-color: @red;
+        color: @background;
+    }
+}
+
+/* Сеть */
+#network.disconnected {
+    color: @foreground-inactive;
+}
+
+/* Аудио */
+#wireplumber.muted {
+    color: @foreground-inactive;
+}
+
+/* Трей */
+#tray > * {
+    padding: 0 4px;
+}
+
+/* Разделители (опционально) */
+#custom-arch-menu {
+    border-right: 1px solid #333333;
+}
+
+#clock {
+    border-right: 1px solid #333333;
+}
+
+/* Инструмент-подсказка */
+tooltip {
+    background-color: @background;
+    color: @foreground;
+    border: 1px solid #333333;
+}
+
+tooltip label {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
